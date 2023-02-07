@@ -1,5 +1,4 @@
-.idea/*
-!.idea/docker-test.iml
+#.idea/*
+#!.idea/docker-test.iml
 
-logs
-
+#logs
