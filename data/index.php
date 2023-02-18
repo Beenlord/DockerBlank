@@ -1,8 +1,10 @@
 <?php
-
- define("DS", DIRECTORY_SEPARATOR);
- define("CMS_ROOT", dirname(  __FILE__));
-
- $fileBinPath = CMS_ROOT . DS . "public/lab.svg";
-
- echo file_get_contents($fileBinPath);
+	
+	require './config.php';
+	require './functions.php';
+	
+	define('URI', explode('?', trim($_SERVER['REQUEST_URI'], '/'))[0]);
+	define('SSR', isset($_GET['SSR']));
+	
+	
+	
