@@ -11,7 +11,7 @@
 			array_push($data, json_decode($pageJson));
 			return $data;
 		} catch (Exception $e) {
-			echo 'Ошибка: ' . $e -> getMessage();
+			echo 'Ошибка базы данных: ' . $e -> getMessage();
 		}
 	}
 	
@@ -24,4 +24,14 @@
 			return file_get_contents($filePath);
 		} else throw new Exception('Запрашиваемый файл не найден.');
 	}
+
+    function getUriPath() {
+        $uri = trim($_SERVER['REQUEST_URI'], '/');
+        return explode('?', $uri)[0];
+    }
+
+    function getPageName() {
+        $pathNames = explode('/', getUriPath());
+        return !!$pathNames[0] ? $pathNames[count($pathNames) - 1] : 'home';
+    }
 	
