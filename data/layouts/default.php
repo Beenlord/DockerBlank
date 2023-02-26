@@ -4,33 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $this -> data -> title ?></title>
+    <title><?= $this -> data -> title ?? $this -> dataCommon -> siteName ?></title>
     <meta name="description" content="<?= $this -> data -> title ?>"/>
 </head>
 <body>
-    <? include_once getFilePath('layouts', 'assets', 'header.php'); ?>
-    <div class="frame-container">
-        <? include_once getFilePath('layouts', 'pages', $this -> pageName . '.php'); ?>
+    <? include_once getFilePath('layouts', 'snippets', 'header.php'); ?>
+    <div id="main">
+        <div id="frame">
+            <? include_once getFilePath('layouts', 'pages', $this -> pageName . '.php'); ?>
+        </div>
     </div>
-    <script>
-        console.time();
-        document.addEventListener('DOMContentLoaded', (e) => {
-            const hrefs = document.querySelectorAll('a[data-ssr]');
-            hrefs.forEach((a) => {
-                a.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    asyncLoadPage(a.getAttribute('href'));
-                });
-            });
-        });
-        function asyncLoadPage(uri, cb) {
-            const frameContainer = document.querySelector('.frame-container');
-            fetch(`${uri}?ssr`)
-                .then(async (response) => {
-                    window.history.pushState({}, '', uri);
-                    frameContainer.innerHTML = await response.text();
-                });
-        }
-    </script>
+    <script src="/assets/script.js"></script>
 </body>
 </html>

@@ -6,10 +6,11 @@
 	define('SSR', isset($_GET['ssr']));
 
     $page = new class() {
-        private $uriPath;
-        private $pageName;
-        private $data = [];
-        private $dataCommon = [];
+        public $uriPath;
+        public $pageName;
+        public $data = [];
+        public $dataCommon = [];
+        public $html = '';
 
         public function __construct() {
             $this -> uriPath    = getUriPath();
