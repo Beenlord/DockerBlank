@@ -6,6 +6,6 @@
 	require "config.php";
 	require "functions.php";
 	
-	 use core\Application;
+	use application\Application;
 	
-	 new Application();
+	(new Application());
